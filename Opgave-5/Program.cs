@@ -49,16 +49,25 @@ namespace Opgave_5
                 Console.WriteLine("Request " + message);
 
 
+                //if (message.Contains("HentAlle"))
+                //{
+                //    foreach (FootBallPlayer footBallPlayer in Flist)
+                //    {
+                //        writer.WriteLine();
+                //        writer.WriteLine($" Id: {footBallPlayer.Id} Name: {footBallPlayer.Name} ShirtNumber {footBallPlayer.ShirtNumber} Price {footBallPlayer.Price}");
+                //    }
+
+                //    writer.Flush();
+
+                //}
+
                 if (message.Contains("HentAlle"))
                 {
-                    foreach (FootBallPlayer footBallPlayer in Flist)
-                    {
-                        writer.WriteLine();
-                        writer.WriteLine($" Id: {footBallPlayer.Id} Name: {footBallPlayer.Name} ShirtNumber {footBallPlayer.ShirtNumber} Price {footBallPlayer.Price}");
-                    }
+                    string jsonString = JsonSerializer.Serialize(Flist);
+                    writer.WriteLine();
+                    writer.WriteLine(jsonString);
 
                     writer.Flush();
-
                 }
 
                 else if (message.ToLower().StartsWith("id"))
