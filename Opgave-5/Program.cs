@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FootBall;
 
@@ -70,23 +71,46 @@ namespace Opgave_5
                     writer.Flush();
                 }
 
+                //else if (message.ToLower().StartsWith("id"))
+                //{
+                //    writer.WriteLine("Pick an id please");
+                //    writer.Flush();
+                //    message = reader.ReadLine();
+                //    writer.WriteLine("id pick");
+                //    writer.Flush();
+                //    int number = int.Parse(message);
+                //    var result = Flist.Find(s => s.Id.Equals(number));
+
+                //    writer.WriteLine($" Id: {result.Id} - Name: {result.Name} - ShirtNumber {result.ShirtNumber} - Price {result.Price}");
+
+                //    writer.Flush();
+
+                //    writer.WriteLine();
+
+                //}
+
+                //second Try find by Id
+
                 else if (message.ToLower().StartsWith("id"))
                 {
-                    writer.WriteLine("Pick an id please");
-                    writer.Flush();
-                    message = reader.ReadLine();
-                    writer.WriteLine("id pick");
-                    writer.Flush();
-                    int number = int.Parse(message);
-                    var result = Flist.Find(s => s.Id.Equals(number));
+                    var jsonId = JsonSerializer.Deserialize<FootBallPlayer>(message1);
 
-                    writer.WriteLine($" Id: {result.Id} - Name: {result.Name} - ShirtNumber {result.ShirtNumber} - Price {result.Price}");
+                    foreach (var id in Flist)
+                    {
+                        
+                        Flist.Contains(jsonId);
+                        message1 = reader.ReadLine();
+                        writer.WriteLine();
+                        writer.WriteLine(message1);
+                        writer.Flush();
+                    }
 
-                    writer.Flush();
-
-                    writer.WriteLine();
-
+                    
                 }
+
+
+
+
 
                 else if (message.Contains("Gem"))
                 {
